@@ -12,4 +12,10 @@ export type JobItem = {
   companyURL: string;
 };
 
+export type JobItemDetailed = JobItem & {
+  description: string;
+  qualifications: string[];
+  reviews: string[];
+};
+
 export type SortMethod = "relevant" | "recent";

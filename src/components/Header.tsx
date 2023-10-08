@@ -2,15 +2,9 @@ import Bookmarks from "./Bookmarks";
 import Logo from "./Logo";
 
 export default function Header({ children }) {
-  return (
-    <header className="header">
-      <div className="header__top">
-        <Logo />
+  return <header className="header">{children}</header>;
+}
 
-        <Bookmarks />
-      </div>
-
-      <div className="intro">{children}</div>
-    </header>
-  );
+export function HeaderTop({ children }) {
+  return <div className="header__top">{children}</div>;
 }

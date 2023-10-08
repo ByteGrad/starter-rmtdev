@@ -4,18 +4,25 @@ import { JobItem } from "../lib/types";
 //   jobItem: JobItem;
 // };
 
-type JobListItemProps = {
-  badgeLetters: string;
-  title: string;
-  company: string;
-  duration: string;
-  salary: string;
-  location: string;
-  daysAgo: number;
+// type JobListItemProps = {
+//   id: number;
+//   badgeLetters: string;
+//   title: string;
+//   company: string;
+//   duration: string;
+//   salary: string;
+//   location: string;
+//   daysAgo: number;
+// };
+
+type JobListItemProps = JobItem & {
+  isActive?: boolean;
+  isBookmarked: boolean;
 };
 
 // export default function JobListItem({ jobItem }: JobListItemProps) {
 export default function JobListItem({
+  id,
   badgeLetters,
   title,
   company,
@@ -23,10 +30,12 @@ export default function JobListItem({
   salary,
   location,
   daysAgo,
+  isActive,
+  isBookmarked,
 }: JobListItemProps) {
   return (
-    <li className="job-item ${state.activeJobItem.id === jobItem.id ? 'job-item--active' : ''}">
-      <a className="job-item__link" href="${jobItem.id}">
+    <li className={`job-item ${isActive ? "job-item--active" : ""}`}>
+      <a className="job-item__link" href={`#${id}`}>
         <div className="job-item__badge">{badgeLetters}</div>
         <div className="job-item__middle">
           <h3 className="third-heading">{title}</h3>
@@ -47,7 +56,11 @@ export default function JobListItem({
           </div>
         </div>
         <div className="job-item__right">
-          <i className="fa-solid fa-bookmark job-item__bookmark-icon ${state.bookmarkJobItems.some(bookmarkJobItem => bookmarkJobItem.id === jobItem.id) && 'job-item__bookmark-icon--bookmarked'}"></i>
+          <i
+            className={`fa-solid fa-bookmark job-item__bookmark-icon ${
+              isBookmarked ? "job-item__bookmark-icon--bookmarked" : ""
+            }`}
+          ></i>
           <time className="job-item__time">{daysAgo}d</time>
         </div>
       </a>

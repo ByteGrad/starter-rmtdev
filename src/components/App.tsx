@@ -2,19 +2,19 @@ import { useState, useMemo } from "react";
 import Background from "./Background";
 import Container from "./Container";
 import Footer from "./Footer";
-import Header from "./Header";
+import Header, { HeaderTop } from "./Header";
 import { useDebounce, useJobItems } from "../lib/hooks";
 import Sidebar, { SidebarTop } from "./Sidebar";
 import JobList from "./JobList";
-import JobContent from "./JobContent";
-import JobListItem from "./JobListItem";
-import Spinner from "./Spinner";
 import Search from "./Search";
 import { Toaster } from "react-hot-toast";
 import ResultsCount from "./ResultsCount";
 import Sorting from "./Sorting";
 import Pagination, { PaginationButton } from "./Pagination";
 import { SortMethod } from "../lib/types";
+import JobItemContent from "./JobItemContent";
+import Logo from "./Logo";
+import Bookmarks from "./Bookmarks";
 
 const RESULTS_PER_PAGE = 7;
 
@@ -57,8 +57,8 @@ function App() {
     setSearchText(e.target.value);
   };
   const handleSortChange = (newSortMethod: SortMethod) => {
-    setSortMethod(newSortMethod);
     setCurrentPage(1);
+    setSortMethod(newSortMethod);
   };
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -69,6 +69,11 @@ function App() {
       <Background />
 
       <Header>
+        <HeaderTop>
+          <Logo />
+          <Bookmarks />
+        </HeaderTop>
+
         <Search searchText={searchText} onSearchChange={handleSearchChange} />
       </Header>
 
@@ -82,7 +87,7 @@ function App() {
         // }
         >
           <SidebarTop>
-            <ResultsCount />
+            <ResultsCount count={allJobItems?.length || 0} />
             <Sorting
               currentSortMethod={sortMethod}
               onSortChange={handleSortChange}
@@ -91,14 +96,25 @@ function App() {
 
           {/* on every render now, we are rendering the entire job list */}
           {/* so refactor and memo + useCallback */}
-          <JobList>
+          {/* <JobList>
             {isLoading && searchText.length > 0 && <Spinner />}
 
             {jobItemsOnCurrentPage?.map((jobItem) => (
               // <JobListItem key={jobItem.id} jobItem={jobItem} />
-              <JobListItem key={jobItem.id} {...jobItem} />
+              <JobListItem
+                key={jobItem.id}
+                {...jobItem}
+                isActive={jobItem.id === activeJobItemId}
+                isBookmarked={bookmarkedJobItems.some(
+                  (bookmarkedJobItem) => bookmarkedJobItem.id === jobItem.id
+                )}
+              />
             ))}
-          </JobList>
+          </JobList> */}
+          <JobList
+            jobItems={jobItemsOnCurrentPage}
+            isLoading={isLoading && searchText.length > 0}
+          />
 
           <Pagination>
             {
@@ -124,7 +140,7 @@ function App() {
           </Pagination>
         </Sidebar>
 
-        <JobContent />
+        <JobItemContent />
       </Container>
 
       <Footer />

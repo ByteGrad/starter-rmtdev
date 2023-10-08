@@ -219,16 +219,12 @@ body::-webkit-scrollbar {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bookmarks-btn::before {
-  content: "";
-  height: 15px;
-  width: 2px;
-  display: block;
+.bookmarks__empty {
+  font-size: 14px;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.3);
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .bookmarks-btn__icon {
@@ -243,6 +239,10 @@ body::-webkit-scrollbar {
 .job-list {
   background-color: #fff;
   position: relative;
+  /* height: 100%; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
   scrollbar-color: #cacdd0 #ffffff; /* Firefox */
   scrollbar-width: thin; /* Firefox */
@@ -274,7 +274,8 @@ body::-webkit-scrollbar {
 }
 
 .job-list--bookmarks {
-  visibility: hidden;
+  /* visibility: hidden; */
+  /* opacity: 0; */
   min-height: 76px;
   min-width: 340px;
   width: 340px;
@@ -282,11 +283,10 @@ body::-webkit-scrollbar {
   overflow: hidden;
   z-index: 10;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  transform: scale(0.9) translateX(-50%);
+  transform: translateX(-50%);
   transform-origin: left;
   transition: all 0.2s;
-  pointer-events: none;
+  /* pointer-events: none; */
 
   position: fixed;
   left: 50%;
@@ -300,17 +300,6 @@ body::-webkit-scrollbar {
   opacity: 1;
 }
 
-.job-list--bookmarks::before {
-  content: "Nothing bookmarked yet...";
-  position: absolute;
-  top: 49%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  font-size: 13px;
-  color: rgb(97, 98, 104);
-}
-
 .job-list--visible {
   pointer-events: initial;
   visibility: initial;
@@ -320,10 +309,10 @@ body::-webkit-scrollbar {
 
 /* JOB ITEM */
 .job-item {
-  padding: 14px 20px;
   cursor: pointer;
   transition: all 0.2s;
   background-color: #fff;
+  flex: 1;
 }
 
 .job-item:not(:nth-child(7)) {
@@ -341,6 +330,7 @@ body::-webkit-scrollbar {
 .job-item__link {
   height: 100%;
   width: 100%;
+  padding: 14px 20px;
   display: flex;
 }
 
@@ -348,7 +338,8 @@ body::-webkit-scrollbar {
   font-size: 13px;
   height: 46px;
   width: 38px;
-  background-color: #8dd335;
+  /* background-color: #8dd335; */
+  background-color: #dee3e9;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -357,7 +348,7 @@ body::-webkit-scrollbar {
   margin-right: 13px;
 }
 
-.job-item:nth-child(4n + 2) .job-item__badge {
+/* .job-item:nth-child(4n + 2) .job-item__badge {
   background-color: #3d87f1;
 }
 
@@ -367,7 +358,7 @@ body::-webkit-scrollbar {
 
 .job-item:nth-child(4n + 4) .job-item__badge {
   background-color: #d96a46;
-}
+} */
 
 .job-item__middle {
 }
@@ -445,6 +436,9 @@ body::-webkit-scrollbar {
 .search {
   position: relative;
   animation: intro 0.3s 0.1s backwards;
+  margin: 0 auto;
+  width: 610px;
+  margin-top: 20px;
 }
 
 .search__submit-btn {
@@ -466,7 +460,7 @@ body::-webkit-scrollbar {
 
 .search__input {
   height: 56px;
-  width: 610px;
+  width: 100%;
   border-radius: 4px;
   padding-left: 55px;
   padding-right: 15px;
@@ -973,10 +967,6 @@ body::-webkit-scrollbar {
   position: absolute;
   border-radius: 50%;
   animation: spinner 1s infinite linear;
-  visibility: hidden;
-}
-
-.spinner--search {
   left: 50%;
   top: 18%;
   width: 85px;
@@ -985,6 +975,9 @@ body::-webkit-scrollbar {
   border-right: 5px solid #e2e7e9;
   border-bottom: 5px solid #e2e7e9;
   border-left: 5px solid #ccd1d3;
+}
+
+.spinner--search {
 }
 
 .spinner--job-details {

@@ -1,22 +1,29 @@
 import { useContext, useEffect, useState } from "react";
-import { JobItemsContext } from "../contexts/SearchResultsContextProvider";
+import { BookmarksContext } from "../contexts/BookmarksContextProvider";
 import { useQuery } from "@tanstack/react-query";
-import { JobItem } from "./types";
-import toast from "react-hot-toast";
+import { JobItem, JobItemDetailed } from "./types";
+import { BASE_API_URL } from "./constants";
+import { handleError } from "./utils";
+import { ActiveIdContext } from "../contexts/ActiveIdContextProvider";
 
-type ApiResponseData = {
+// ------------------------------
+
+type JobItemsApiResponse = {
   public: boolean;
   sorted: boolean;
   jobItems: JobItem[];
 };
 
-const fetchData = async (searchText: string): Promise<ApiResponseData> => {
+const fetchJobItems = async (
+  searchText: string
+): Promise<JobItemsApiResponse> => {
   const response = await fetch(
-    `https://bytegrad.com/course-assets/js/2/api/jobs?search=${searchText}`
+    `${BASE_API_URL}/rmtdev/api/data?search=${searchText}`
   );
   if (!response.ok) {
     // 4xx or 5xx response
-    throw new Error("Something went wrong");
+    const errorData = await response.json();
+    throw new Error(errorData.description);
   }
   return await response.json();
 };
@@ -24,16 +31,13 @@ const fetchData = async (searchText: string): Promise<ApiResponseData> => {
 export function useJobItems(searchText: string) {
   const { data, isLoading } = useQuery(
     ["job-items", searchText],
-    () => fetchData(searchText),
+    () => fetchJobItems(searchText),
     {
       enabled: Boolean(searchText),
       staleTime: 1000 * 20,
       refetchOnWindowFocus: false,
       retry: false,
-      onError: (error) =>
-        toast.error(
-          error instanceof Error ? error.message : "Fetching job items failed."
-        ),
+      onError: handleError,
     }
   );
 
@@ -43,8 +47,83 @@ export function useJobItems(searchText: string) {
   //   error,
   // };
   // return array for easier renaming
-  return [data?.jobItems, isLoading] as const;
+  return [data?.jobItems || [], isLoading] as const;
 }
+
+// ------------------------------
+
+type JobItemDetailedApiResponse = {
+  public: boolean;
+  jobItem: JobItemDetailed;
+};
+
+const fetchJobItemDetailed = async (
+  id: number
+): Promise<JobItemDetailedApiResponse> => {
+  const response = await fetch(`${BASE_API_URL}/rmtdev/api/data/${id}`);
+  if (!response.ok) {
+    // 4xx or 5xx response
+    const errorData = await response.json();
+    throw new Error(errorData.description);
+  }
+  return await response.json();
+};
+
+export function useJobItemDetailed() {
+  const [id, setId] = useState<number | null>(null);
+  const { data, isLoading } = useQuery(
+    ["job-item", id],
+    () => fetchJobItemDetailed(id!),
+    {
+      staleTime: 1000 * 60 * 60 * 24,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: Boolean(id),
+      onError: handleError,
+    }
+  );
+
+  useEffect(() => {
+    // set up listener for hash change in url
+    const handleHashChange = () => {
+      const id = +window.location.hash.slice(1);
+      setId(id);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    // for initial load
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  return [data?.jobItem, isLoading] as const;
+}
+
+// ------------------------------
+
+export function useActiveJobItemId() {
+  const [activeJobItemId, setActiveJobItemId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const id = +window.location.hash.slice(1);
+      setActiveJobItemId(id);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  return activeJobItemId;
+}
+
+// ------------------------------
 
 export function useDebounce<T>(value: T, delay = 500): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -60,11 +139,26 @@ export function useDebounce<T>(value: T, delay = 500): T {
   return debouncedValue;
 }
 
-export function useJobItemsContext() {
-  const context = useContext(JobItemsContext);
+// ------------------------------
+
+// ------------------------------
+
+export function useBookmarksContext() {
+  const context = useContext(BookmarksContext);
   if (!context) {
     throw new Error(
-      "JobItemsContext must be used within a JobItemsContextProvider"
+      "BookmarksContext must be used within a BookmarksContextProvider"
+    );
+  }
+  return context;
+}
+
+export function useActiveIdContext() {
+  const context = useContext(ActiveIdContext);
+
+  if (!context) {
+    throw new Error(
+      "ActiveIdContext must be used within an ActiveIdContextProvider"
     );
   }
   return context;
