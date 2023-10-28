@@ -9,7 +9,9 @@ type JobListProps = {
   isLoading: boolean;
 };
 
-const JobList = ({ jobItems, isLoading }: JobListProps) => {
+// show that before memo it renders every key stroke
+// pick a bigger debounce to show it properly
+const JobList = memo(({ jobItems, isLoading }: JobListProps) => {
   console.log("JobList rendering...");
   const { bookmarkedJobItems } = useBookmarksContext();
   const { activeJobItemId } = useActiveIdContext();
@@ -30,6 +32,6 @@ const JobList = ({ jobItems, isLoading }: JobListProps) => {
       ))}
     </ul>
   );
-};
+});
 
 export default JobList;

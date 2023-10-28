@@ -1,3 +1,4 @@
+import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
 import { useBookmarksContext } from "../lib/hooks";
 import { JobItemDetailed } from "../lib/types";
 
@@ -27,16 +28,16 @@ export default function BookmarkButton({
   };
 
   return (
-    <button onClick={handleBookmark} className="job-info__bookmark-btn">
-      <i
-        className={`fa-solid fa-bookmark job-info__bookmark-icon ${
+    <button onClick={handleBookmark} className="bookmark-btn">
+      <BookmarkFilledIcon
+        className={`${
           bookmarkedJobItems.some(
             (bookmarkedJobItem) => bookmarkedJobItem.id === jobItemDetailed?.id
           )
-            ? "job-info__bookmark-icon--bookmarked"
+            ? "filled"
             : ""
         }`}
-      ></i>
+      />
     </button>
   );
 }

@@ -130,7 +130,7 @@ body::-webkit-scrollbar {
   top: 0;
 }
 
-.background__pattern {
+.background > img {
   position: absolute;
   top: -25px;
   left: 0;
@@ -205,6 +205,20 @@ body::-webkit-scrollbar {
   cursor: pointer;
   transition: all 0.2s;
   height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.bookmarks-btn::before {
+  content: "";
+  height: 15px;
+  width: 2px;
+  display: block;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .bookmarks-btn--active,
@@ -217,14 +231,6 @@ body::-webkit-scrollbar {
 .bookmarks-btn:hover .bookmarks-btn__icon,
 .bookmarks-btn:focus .bookmarks-btn__icon {
   color: rgba(255, 255, 255, 0.8);
-}
-
-.bookmarks__empty {
-  font-size: 14px;
-  position: absolute;
-  top: 46%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .bookmarks-btn__icon {
@@ -293,6 +299,14 @@ body::-webkit-scrollbar {
   top: 82px;
 }
 
+.job-list--bookmarks > p {
+  font-size: 14px;
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .job-list--bookmarks:hover {
   pointer-events: initial;
   visibility: initial;
@@ -310,9 +324,10 @@ body::-webkit-scrollbar {
 /* JOB ITEM */
 .job-item {
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
   background-color: #fff;
-  flex: 1;
+  /* flex: 1; */
+  height: 76px;
 }
 
 .job-item:not(:nth-child(7)) {
@@ -441,14 +456,14 @@ body::-webkit-scrollbar {
   margin-top: 20px;
 }
 
-.search__submit-btn {
+.search > button {
   cursor: pointer;
   position: absolute;
   top: 17px;
   left: 25px;
 }
 
-.search__icon {
+.search > button > i {
   transition: all 0.2s;
   color: rgba(0, 0, 0, 0.73);
 }
@@ -458,7 +473,7 @@ body::-webkit-scrollbar {
   color: rgba(0, 0, 0, 0.93);
 }
 
-.search__input {
+.search input {
   height: 56px;
   width: 100%;
   border-radius: 4px;
@@ -471,20 +486,20 @@ body::-webkit-scrollbar {
   transition: all 0.2s, box-shadow 0.1s;
 }
 
-.search__input::selection {
+.search input::selection {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.search__input:hover,
-.search__input:focus {
+.search input:hover,
+.search input:focus {
   background-color: rgba(255, 255, 255, 1);
 }
 
-.search__input:focus {
+.search input:focus {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
-.search__input::placeholder {
+.search input::placeholder {
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   font-size: 15px;
@@ -540,9 +555,6 @@ body::-webkit-scrollbar {
   font-size: 12px;
 }
 
-.count__number {
-}
-
 /* SORTING */
 .sorting {
   display: flex;
@@ -550,7 +562,7 @@ body::-webkit-scrollbar {
   gap: 4px;
 }
 
-.sorting__icon {
+.sorting > i {
   font-size: 11px;
   color: #4c4f50;
   margin-right: 5px;
@@ -599,6 +611,13 @@ body::-webkit-scrollbar {
   cursor: pointer;
   transition: all 0.2s, visibility 0s;
   gap: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.pagination__button svg {
+  width: 10px;
+  transform: translateY(1px);
 }
 
 .pagination__button:hover,
@@ -622,16 +641,9 @@ body::-webkit-scrollbar {
   margin-left: 3px;
 }
 
-.pagination__number {
+.pagination__button > span {
   font-weight: 500;
 }
-
-.pagination__number--back {
-}
-
-.pagination__number--next {
-}
-
 .pagination__icon {
   font-size: 8px;
   color: #9fa6b0;
@@ -653,7 +665,17 @@ body::-webkit-scrollbar {
   transform: translate(-50%, -50%);
 }
 
-.job-details__start-text {
+.job-details__start-view > p:first-child {
+  opacity: 0.55;
+  width: 275px;
+  text-align: center;
+  color: #0d1114;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.job-details__start-view > p:nth-child(2) {
   opacity: 0.55;
   color: #24292d;
   font-size: 14px;
@@ -661,18 +683,11 @@ body::-webkit-scrollbar {
   text-align: center;
 }
 
-.job-details__start-text--big {
-  color: #0d1114;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.job-details__content {
+.job-details > div {
   height: 100%;
 }
 
-.job-details__cover-img {
+.job-details > div > img {
   width: 100%;
   height: 174px;
   position: absolute;
@@ -788,21 +803,21 @@ body::-webkit-scrollbar {
   color: #494d4f;
 }
 
-.job-info__bookmark-btn {
+.bookmark-btn {
   cursor: pointer;
 }
 
-.job-info__bookmark-btn:hover .job-info__bookmark-icon {
+.bookmark-btn:hover svg {
   color: #2671dd;
 }
 
-.job-info__bookmark-icon {
+.bookmark-btn svg {
   color: #d7dbe0;
   transition: all 0.2s;
   font-size: 18px;
 }
 
-.job-info__bookmark-icon--bookmarked {
+.bookmark-btn .filled {
   color: #2671dd;
 }
 
@@ -933,23 +948,24 @@ body::-webkit-scrollbar {
 }
 
 /* COPYRIGHT */
-.copyright {
+.footer > small {
   font-size: 11px;
+  max-width: 200px;
 }
 
-.copyright *::selection {
+.footer > small *::selection {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.copyright__text {
+.footer > small > p:first-child {
   line-height: 1.2;
 }
 
-.copyright__link {
+.footer > small > p:first-child > a {
   text-decoration: underline;
 }
 
-.copyright__icon {
+.footer > small > p:first-child > svg {
   font-size: 10px;
   margin-right: 4px;
   margin-left: 2px;
@@ -957,7 +973,7 @@ body::-webkit-scrollbar {
 }
 
 /* JOBS AVAILABLE */
-.jobs-available {
+.footer > p {
   font-size: 11px;
   align-self: flex-start;
 }
@@ -1107,11 +1123,11 @@ body::-webkit-scrollbar {
     justify-content: center;
   }
 
-  .copyright {
+  .footer > small {
     text-align: center;
   }
 
-  .jobs-available {
+  .footer > p {
     margin-left: 15px;
     text-align: right;
     display: none;

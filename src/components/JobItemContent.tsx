@@ -29,11 +29,10 @@ export default function JobItemContent() {
 
     content = (
       <>
-        <img src={coverImgURL} alt="#" className="job-details__cover-img" />
+        <img src={coverImgURL} alt="#" />
 
         <a className="apply-btn" href={companyURL} target="_blank">
-          Apply{" "}
-          <i className="fa-solid fa-square-arrow-up-right apply-btn__icon"></i>
+          Apply
         </a>
 
         <section className="job-info">
@@ -45,6 +44,7 @@ export default function JobItemContent() {
               <BookmarkButton jobItemDetailed={jobItemDetailed} />
             </div>
           </div>
+
           <div className="job-info__right">
             <h2 className="second-heading">{title}</h2>
             <p className="job-info__company">{company}</p>
@@ -115,7 +115,7 @@ export default function JobItemContent() {
 
   return (
     <section className="job-details">
-      <div className="job-details__content">{content}</div>
+      <div>{content}</div>
     </section>
   );
 }
@@ -123,10 +123,8 @@ export default function JobItemContent() {
 function EmptyJobContent() {
   return (
     <div className="job-details__start-view">
-      <p className="job-details__start-text job-details__start-text--big">
-        What are you looking for?
-      </p>
-      <p className="job-details__start-text job-details__start-text">
+      <p>What are you looking for?</p>
+      <p>
         Start by searching for any technology your ideal job is working with
       </p>
     </div>

@@ -3,30 +3,10 @@ import { BookmarksContext } from "../contexts/BookmarksContextProvider";
 import { useQuery } from "@tanstack/react-query";
 import { JobItem, JobItemDetailed } from "./types";
 import { BASE_API_URL } from "./constants";
-import { handleError } from "./utils";
+import { fetchJobItems, handleError } from "./utils";
 import { ActiveIdContext } from "../contexts/ActiveIdContextProvider";
 
 // ------------------------------
-
-type JobItemsApiResponse = {
-  public: boolean;
-  sorted: boolean;
-  jobItems: JobItem[];
-};
-
-const fetchJobItems = async (
-  searchText: string
-): Promise<JobItemsApiResponse> => {
-  const response = await fetch(
-    `${BASE_API_URL}/rmtdev/api/data?search=${searchText}`
-  );
-  if (!response.ok) {
-    // 4xx or 5xx response
-    const errorData = await response.json();
-    throw new Error(errorData.description);
-  }
-  return await response.json();
-};
 
 export function useJobItems(searchText: string) {
   const { data, isLoading } = useQuery(
@@ -129,11 +109,9 @@ export function useDebounce<T>(value: T, delay = 500): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    const timerId = setTimeout(() => setDebouncedValue(value), delay);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timerId);
   }, [value, delay]);
 
   return debouncedValue;

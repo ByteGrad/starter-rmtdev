@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Background from "./Background";
 import Container from "./Container";
 import Footer from "./Footer";
@@ -15,8 +15,7 @@ import { SortMethod } from "../lib/types";
 import JobItemContent from "./JobItemContent";
 import Logo from "./Logo";
 import Bookmarks from "./Bookmarks";
-
-const RESULTS_PER_PAGE = 7;
+import { RESULTS_PER_PAGE } from "../lib/constants";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -63,6 +62,10 @@ function App() {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+
+  useEffect(() => {
+    console.log("Value changed");
+  }, [jobItemsOnCurrentPage]);
 
   return (
     <>

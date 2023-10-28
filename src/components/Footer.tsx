@@ -1,26 +1,17 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      <small className="copyright">
-        <p className="copyright__text">
+      <small>
+        <p>
           © Copyright by{" "}
-          <a
-            href="https://bytegrad.com"
-            className="copyright__link"
-            target="_blank"
-          >
+          <a href="https://bytegrad.com" target="_blank">
             ByteGrad.com
-          </a>{" "}
-          <i className="fa-solid fa-square-up-right copyright__icon"></i>{" "}
-          Intended for learning or your portfolio.
-        </p>
-        <p className="copyright__text">
-          <span className="u-bold u-italic">Not allowed</span> to use as your
-          own teaching material.
+          </a>
+          . Intended for learning or your portfolio.
         </p>
       </small>
 
-      <p className="jobs-available">
+      <p>
         <span className="u-bold">109573</span> total jobs available
       </p>
     </footer>

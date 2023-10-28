@@ -1,3 +1,5 @@
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+
 export default function Pagination({
   children,
 }: {
@@ -27,21 +29,16 @@ export function PaginationButton({
         e.currentTarget.blur();
       }}
     >
-      {direction === "back" ? (
+      {direction === "back" && (
         <>
-          <i className="fa-solid fa-arrow-left pagination__icon"></i>
-          Page{" "}
-          <span className="pagination__number pagination__number--back">
-            {currentPage - 1}
-          </span>
+          <ArrowLeftIcon />
+          Page <span>{currentPage - 1}</span>
         </>
-      ) : (
+      )}
+      {direction === "next" && (
         <>
-          Page{" "}
-          <span className="pagination__number pagination__number--next">
-            {currentPage + 1}
-          </span>
-          <i className="fa-solid fa-arrow-right pagination__icon"></i>
+          Page <span>{currentPage + 1}</span>
+          <ArrowRightIcon />
         </>
       )}
     </button>

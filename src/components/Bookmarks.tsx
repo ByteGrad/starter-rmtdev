@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import JobListItem from "./JobListItem";
 import { useActiveIdContext, useBookmarksContext } from "../lib/hooks";
+import { TriangleDownIcon } from "@radix-ui/react-icons";
 
 export default function Bookmarks() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,14 +31,14 @@ export default function Bookmarks() {
   return (
     <section>
       <button onClick={() => setIsOpen(!isOpen)} className="bookmarks-btn">
-        Bookmarks <i className="fa-solid fa-caret-down bookmarks-btn__icon"></i>
+        Bookmarks <TriangleDownIcon />
       </button>
 
       {isOpen &&
         createPortal(
           <ul className="job-list job-list--bookmarks">
             {bookmarkedJobItems.length === 0 ? (
-              <p className="bookmarks__empty">No bookmarks yet</p>
+              <p>No bookmarks yet</p>
             ) : (
               bookmarkedJobItems.map((jobItem) => (
                 <JobListItem
