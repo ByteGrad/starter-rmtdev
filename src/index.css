@@ -408,14 +408,20 @@ body::-webkit-scrollbar {
   margin-left: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  transform: translateX(2px);
 }
 
-.job-item__bookmark-icon {
+.job-item__right svg {
   font-size: 14px;
+
   cursor: pointer;
   color: #d7dbe0;
   transition: all 0.2s;
+}
+
+.job-item__right svg.filled {
+  color: #2671dd;
 }
 
 .job-item__bookmark-icon--bookmarked {

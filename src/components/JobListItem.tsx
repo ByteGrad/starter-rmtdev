@@ -1,3 +1,4 @@
+import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { JobItem } from "../lib/types";
 
 // type JobListItemProps = {
@@ -56,11 +57,7 @@ export default function JobListItem({
           </div>
         </div>
         <div className="job-item__right">
-          <i
-            className={`fa-solid fa-bookmark job-item__bookmark-icon ${
-              isBookmarked ? "job-item__bookmark-icon--bookmarked" : ""
-            }`}
-          ></i>
+          <BookmarkFilledIcon className={`${isBookmarked ? "filled" : ""}`} />
           <time className="job-item__time">{daysAgo}d</time>
         </div>
       </a>
