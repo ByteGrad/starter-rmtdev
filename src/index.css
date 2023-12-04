@@ -279,6 +279,27 @@ body::-webkit-scrollbar {
   flex: 1;
 }
 
+.bookmarks-popover {
+  /* visibility: hidden; */
+  /* opacity: 0; */
+  background-color: #fff;
+  min-height: 76px;
+  min-width: 340px;
+  width: 340px;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%);
+  transform-origin: left;
+  transition: all 0.2s;
+  /* pointer-events: none; */
+
+  position: fixed;
+  left: 50%;
+  top: 82px;
+}
+
 .job-list--bookmarks {
   /* visibility: hidden; */
   /* opacity: 0; */
