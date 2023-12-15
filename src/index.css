@@ -907,6 +907,7 @@ body::-webkit-scrollbar {
 
 .qualifications__list {
   display: flex;
+  align-items: start;
   flex-wrap: wrap;
   gap: 6px;
 }
