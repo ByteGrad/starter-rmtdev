@@ -1,5 +1,4 @@
 import JobList from "./JobList";
-import JobListItem from "./JobListItem";
 import PaginationControls from "./PaginationControls";
 import ResultsCount from "./ResultsCount";
 import SortingControls from "./SortingControls";
