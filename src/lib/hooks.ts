@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { jobItem } from "./types";
+import { BASE_URL } from "./constant";
 
 export function useActiveId() {
   const [activeJobItemId, setActiveJobItemId] = useState<number | null>(null);
@@ -33,9 +34,7 @@ export function useJobItems(searchInputText: string) {
 
     const fetchJobData = async () => {
       setIsLoading(true);
-      const response = await fetch(
-        `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchInputText}`
-      );
+      const response = await fetch(`${BASE_URL}?search=${searchInputText}`);
 
       const data = await response.json();
       setIsLoading(false);
