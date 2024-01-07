@@ -1,4 +1,12 @@
-export default function SearchForm({ searchInputText, setSearchInputText }) {
+type SearchFormProps = {
+  searchInputText: string;
+  setSearchInputText: (searchInputText: string) => void;
+};
+
+export default function SearchForm({
+  searchInputText,
+  setSearchInputText,
+}: SearchFormProps) {
   return (
     <form
       action="#"
