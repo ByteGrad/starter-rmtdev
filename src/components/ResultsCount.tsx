@@ -1,3 +1,3 @@
-export default function ResultsCount() {
-  return <p className="count">0 results</p>;
+export default function ResultsCount({ totalNumberOfResults }) {
+  return <p className="count">{totalNumberOfResults} results </p>;
 }

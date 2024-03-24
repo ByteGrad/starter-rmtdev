@@ -1,7 +1,25 @@
-export default function Header() {
+import BookmarkIcon from "./BookmarkIcon";
+import BookmarksButton from "./BookmarksButton";
+import Logo from "./Logo";
+import SearchForm from "./SearchForm";
+
+export default function Header({ children }) {
   return (
+
     <header className="header">
-      <div className="header__top"></div>
+      {children}
+
     </header>
+  );
+}
+
+
+export function HeaderTop({ children }) {
+  return (
+    <div className="header__top">
+      {children}
+
+
+    </div>
   );
 }
