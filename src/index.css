@@ -246,6 +246,7 @@ body::-webkit-scrollbar {
 .job-list {
   background-color: #fff;
   position: relative;
+  min-height: 80px;
   /* height: 100%; */
   flex: 1;
   display: flex;
@@ -284,8 +285,7 @@ body::-webkit-scrollbar {
   /* visibility: hidden; */
   /* opacity: 0; */
   background-color: #fff;
-  min-height: 76px;
-  min-width: 340px;
+  min-width: 96px;
   width: 340px;
   border-radius: 4px;
   overflow: hidden;
@@ -299,6 +299,39 @@ body::-webkit-scrollbar {
   position: fixed;
   left: 50%;
   top: 82px;
+}
+
+.bookmarks-popover > .bookmarks__start-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bookmarks-popover > .bookmarks__start-view > p:first-child {
+  opacity: 0.55;
+  width: 275px;
+  text-align: center;
+  color: #0d1114;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.bookmarks-popover > .bookmarks__start-view > p:nth-child(2) {
+  opacity: 0.55;
+  color: #24292d;
+  font-size: 14px;
+  width: 275px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.bookmarks-popover .spinner {
+  height: 45px;
+  width: 45px;
+  transform: translate(-50%, -45%);
 }
 
 .job-list--bookmarks {
@@ -385,7 +418,7 @@ body::-webkit-scrollbar {
   margin-right: 13px;
 }
 
-/* .job-item:nth-child(4n + 2) .job-item__badge {
+.job-item:nth-child(4n + 2) .job-item__badge {
   background-color: #3d87f1;
 }
 
@@ -395,7 +428,7 @@ body::-webkit-scrollbar {
 
 .job-item:nth-child(4n + 4) .job-item__badge {
   background-color: #d96a46;
-} */
+}
 
 .job-item__middle {
 }
@@ -511,7 +544,9 @@ body::-webkit-scrollbar {
   color: rgba(0, 0, 0, 0.9);
   caret-color: rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.9);
-  transition: all 0.2s, box-shadow 0.1s;
+  transition:
+    all 0.2s,
+    box-shadow 0.1s;
 }
 
 .search input::selection {
@@ -637,7 +672,9 @@ body::-webkit-scrollbar {
   color: #747c82;
   background-color: #eceff2;
   cursor: pointer;
-  transition: all 0.2s, visibility 0s;
+  transition:
+    all 0.2s,
+    visibility 0s;
   gap: 2px;
   display: flex;
   align-items: center;
@@ -835,6 +872,10 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
+.bookmark-btn-disabled {
+  cursor: default;
+}
+
 .bookmark-btn:hover svg {
   color: #2671dd;
 }
@@ -1016,6 +1057,8 @@ body::-webkit-scrollbar {
   top: 18%;
   width: 85px;
   height: 85px;
+  /* width: 45px;
+  height: 45px; */
   border-top: 5px solid #e2e7e9;
   border-right: 5px solid #e2e7e9;
   border-bottom: 5px solid #e2e7e9;

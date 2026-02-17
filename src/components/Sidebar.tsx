@@ -1,7 +1,7 @@
-export default function Sidebar() {
-  return (
-    <div className="sidebar">
-      <div className="sidebar__top"></div>
-    </div>
-  );
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function Sidebar({ children }: Props) {
+  return <div className="sidebar">{children}</div>;
 }

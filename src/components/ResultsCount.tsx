@@ -1,3 +1,10 @@
+import { useJobItemsContext } from "../lib/hooks";
+
 export default function ResultsCount() {
-  return <p className="count">0 results</p>;
+  const { totalNumberOfResults } = useJobItemsContext();
+  return (
+    <p className="count">
+      <span className="u-bold">{totalNumberOfResults}</span> results
+    </p>
+  );
 }
