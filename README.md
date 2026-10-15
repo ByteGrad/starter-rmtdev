@@ -1,27 +1,26 @@
-# React + TypeScript + Vite
+> **Educational code and security — updated 15 October 2026**
+>
+> These examples teach selected concepts and may omit controls required for production. Dependencies and runtimes become outdated over time. Before running or reusing an example, read [SECURITY.md](SECURITY.md), check current advisories, keep dependencies on supported patched versions, and test upgrades. Do not expose development servers or use real customer data or production credentials in a tutorial environment.
+>
+> Except as separately agreed or required by applicable law, the examples are provided as-is, without warranties. To the maximum extent permitted by applicable law, ByteGrad Sp. z o.o. and the authors disclaim liability for losses arising from use of these examples. Nothing limits mandatory consumer rights or liability that cannot lawfully be excluded. This notice does not change your course purchase agreement or grant rights to third-party assets.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# rmtDev starter
 
-Currently, two official plugins are available:
+A starting point for the ByteGrad lessons. The initial page is intentionally minimal; components are provided for building along with the course.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run locally
 
-## Expanding the ESLint configuration
+Use Node.js 24 LTS (see `.nvmrc`), then:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```sh
+npm ci
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Keep the development server on localhost. Use `npm run build` for a production bundle and `npm run lint` for static checks.
+
+## Keeping your copy maintained
+
+Run `npm audit` when you use this project, review new advisories, update dependencies and commit the resulting lockfile after testing. Copying or forking this repository does not automatically apply future fixes to your copy. Re-run the build and lint checks after each update. Avoid blindly running `npm audit fix --force`.
+
+See [SECURITY.md](SECURITY.md) for reporting and deployment guidance and [SECURITY-UPDATES.md](SECURITY-UPDATES.md) for the dated update. The current tooling can differ from the recorded lessons. Existing course and asset usage terms still apply.

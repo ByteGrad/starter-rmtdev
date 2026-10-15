@@ -4,7 +4,7 @@ export default function Footer() {
       <small>
         <p>
           © Copyright by{" "}
-          <a href="https://bytegrad.com" target="_blank">
+          <a href="https://bytegrad.com" target="_blank" rel="noopener noreferrer">
             ByteGrad.com
           </a>
           . Intended for learning or your portfolio.

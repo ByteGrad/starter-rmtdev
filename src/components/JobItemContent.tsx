@@ -11,8 +11,8 @@ export default function JobItemContent() {
 
         <a
           className="apply-btn"
-          href="https://fictional9thtechwebsite.com/"
-          target="_blank"
+          href="https://example.com/"
+          target="_blank" rel="noopener noreferrer"
         >
           Apply
         </a>
@@ -92,7 +92,7 @@ export default function JobItemContent() {
   );
 }
 
-function EmptyJobContent() {
+export function EmptyJobContent() {
   return (
     <section className="job-details">
       <div>
